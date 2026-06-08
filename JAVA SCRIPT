@@ -1,0 +1,14 @@
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let event = document.getElementById("event").value;
+    let tickets = document.getElementById("tickets").value;
+
+    document.getElementById("message").innerHTML =
+        "Booking Successful!<br>" +
+        "Name: " + name + "<br>" +
+        "Event: " + event + "<br>" +
+        "Tickets: " + tickets;
+});
