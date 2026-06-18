@@ -1,0 +1,44 @@
+backend;
+server.js;
+    const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(express.json());
+mongoose.connect(
+"mongodb://127.0.0.1:27017/eventdb"
+);
+app.use("/events",
+require("./routes/events"));
+app.listen(5000,()=>{
+    console.log("Server Running on Port 5000");
+});
+
+routs/event.js
+  const express = require("express");
+const router = express.Router();
+const Event = require("../models/Event");
+router.get("/", async(req,res)=>{
+    const events = await Event.find();
+    res.json(events);
+});
+router.post("/", async(req,res)=>{
+    const event = new Event({
+        name:req.body.name,
+        date:req.body.date
+    });
+    await event.save();
+    res.json(event);
+
+models/event.js;
+   const mongoose = require("mongoose");
+const EventSchema = new mongoose.Schema({
+    name:String,
+    date:String
+});
+module.exports = mongoose.model("Event",EventSchema);
+
+});
+
+module.exports = router;
